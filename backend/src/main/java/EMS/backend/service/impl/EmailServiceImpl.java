@@ -4,11 +4,14 @@ import EMS.backend.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailServiceImpl implements EmailService {
+    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     @Autowired
     private JavaMailSender mailSender;
@@ -28,7 +31,12 @@ public class EmailServiceImpl implements EmailService {
                 "Best regards,\n" +
                 "The HR Team");
         
-        mailSender.send(mailMessage);
+        try {
+            mailSender.send(mailMessage);
+            logger.info("Credentials email sent successfully to: {}", to);
+        } catch (Exception e) {
+            logger.error("CRITICAL: Failed to send credentials email to {}. Error: {}", to, e.getMessage());
+        }
     }
 
     @Async
@@ -46,6 +54,11 @@ public class EmailServiceImpl implements EmailService {
                 "Best regards,\n" +
                 "HR Department");
         
-        mailSender.send(mailMessage);
+        try {
+            mailSender.send(mailMessage);
+            logger.info("Salary update email sent successfully to: {}", to);
+        } catch (Exception e) {
+            logger.error("CRITICAL: Failed to send salary update email to {}. Error: {}", to, e.getMessage());
+        }
     }
 }
