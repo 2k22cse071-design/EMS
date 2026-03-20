@@ -4,6 +4,7 @@ import EMS.backend.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,7 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Async
     @Override
     public void sendCredentialsEmail(String to, String username, String password) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -29,6 +31,7 @@ public class EmailServiceImpl implements EmailService {
         mailSender.send(mailMessage);
     }
 
+    @Async
     @Override
     public void sendSalaryUpdateEmail(String to, String username, double amount, String notes) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

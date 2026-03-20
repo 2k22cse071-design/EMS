@@ -23,8 +23,11 @@ import org.springframework.web.cors.CorsUtils;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.EnableAsync;
+
 @Configuration
 @EnableMethodSecurity
+@EnableAsync
 public class WebSecurityConfig {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
