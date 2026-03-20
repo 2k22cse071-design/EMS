@@ -57,7 +57,7 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Value("${ems.cors.allowed-origins}")
+    @Value("#{'${ems.cors.allowed-origins}'.split(',')}")
     private List<String> allowedOrigins;
 
     @Bean
