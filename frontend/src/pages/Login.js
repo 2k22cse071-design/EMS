@@ -77,7 +77,7 @@ const Login = () => {
             )}
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 ml-2">Username or Email</label>
+              <label className="text-sm font-bold text-slate-400 ml-2">Username or email</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-500 transition-colors">
                   <User size={20} />
